@@ -3,23 +3,27 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        .table{
-            margin-top:3pt;
+        .table {
+            margin-top: 3pt;
         }
-        .btn btn-primary btn-lg active{
-           padding: 3px;
-           margin:3px;
+
+        .btn btn-primary btn-lg active {
+            padding: 3px;
+            margin: 3px;
         }
     </style>
     <h1 style="text-align: center">Address Details </h1>
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="ADDRESS_ID" DataSourceID="SqlDataSource1">
         <InsertItemTemplate>
             ADDRESS_ID:
-                <asp:TextBox ID="ADDRESS_IDTextBox" CssClass="form-control"  runat="server" Text='<%# Bind("ADDRESS_ID") %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Static" ForeColor="Red" runat="server" ControlToValidate="ADDRESS_IDTextBox" ErrorMessage="Address ID Required!" Text='<%# Eval("ADDRESS_ID") %>'></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ADDRESS_IDTextBox" ErrorMessage="Invalid Address ID format. Pick a Number!" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate" Text='<%# Eval("ADDRESS_ID") %>'></asp:CustomValidator>
+            <asp:TextBox ID="ADDRESS_IDTextBox" CssClass="form-control" runat="server" Text='<%# Bind("ADDRESS_ID") %>' />
             <br />
-            
+
             ADDRESS:
-                <asp:TextBox ID="ADDRESSTextBox" CssClass="form-control"  runat="server" Text='<%# Bind("ADDRESS") %>' />
+            &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" Display="Static" ForeColor="Red" runat="server" ControlToValidate="ADDRESSTextBox" ErrorMessage="Address Required!" Text='<%# Eval("ADDRESS") %>'></asp:RequiredFieldValidator>
+            <asp:TextBox ID="ADDRESSTextBox" CssClass="form-control" runat="server" Text='<%# Bind("ADDRESS") %>' />
             <br />
             <asp:LinkButton ID="InsertButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
             &nbsp;<asp:LinkButton ID="InsertCancelButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />

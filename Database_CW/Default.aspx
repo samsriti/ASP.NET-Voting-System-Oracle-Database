@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Database_CW._Default" %>
 
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
@@ -114,7 +116,7 @@
                     <div class="card">
                         <div class="card-header">Employee Highest Vote</div>
                         <div class="card-footer">
-                            <a href="/HighestVote" class="view-details">View Details <i class="fa fa-chevron-right"></i>
+                            <a href="/EmpJobHistory" class="view-details">View Details <i class="fa fa-chevron-right"></i>
                             </a>
                         </div>
                     </div>
