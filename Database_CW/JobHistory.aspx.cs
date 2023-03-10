@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,5 +16,22 @@ namespace Database_CW
         {
 
         }
+
+
+        protected void CustomValidatorDOB_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime dob;
+            if (DateTime.TryParseExact(args.Value, "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dob))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+
+            }
+        }
+
+
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -46,6 +47,22 @@ namespace Database_CW
                 {
                     args.IsValid = true;
                 }
+            }
+        }
+
+        protected void CustomValidator2_ServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            // Get the dept name entered by the user
+            string deptName = e.Value;
+
+            // Check if the dept name is a valid string
+            if (!Regex.IsMatch(deptName, "^[a-zA-Z ]+$"))
+            {
+                e.IsValid = false;
+            }
+            else
+            {
+                e.IsValid = true;
             }
         }
 

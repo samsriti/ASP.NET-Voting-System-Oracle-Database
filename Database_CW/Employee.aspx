@@ -18,6 +18,8 @@
         <InsertItemTemplate>
             EMPLOYEE_ID:
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="EMPLOYEE_IDTextBox" runat="server" ErrorMessage="Employee ID Required!" ForeColor="Red"></asp:RequiredFieldValidator>
+           
+            <asp:CustomValidator ID="CustomValidator2" ControlToValidate="EMPLOYEE_IDTextBox" runat="server" ErrorMessage="Employee ID already exists!" ForeColor="Red" OnServerValidate="CustomValidator2_ServerValidate" Text='<%# Eval("EMPLOYEE_ID") %>'></asp:CustomValidator>
             <asp:TextBox ID="EMPLOYEE_IDTextBox" CssClass="form-control" runat="server" Text='<%# Bind("EMPLOYEE_ID") %>' />
             <br />
             EMPLOYEE_NAME:
@@ -26,14 +28,14 @@
             <br />
             DOB:
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="DOBTextBox" runat="server" ErrorMessage="Employee DOB Required!" ForeColor="Red"></asp:RequiredFieldValidator>
-            <br />
-            <asp:CustomValidator ID="CustomValidatorDOB" runat="server" ControlToValidate="DOBTextBox" ErrorMessage="Invalid date of birth format. The correct format is DD-MM-YY." ForeColor="Red" OnServerValidate="CustomValidatorDOB_ServerValidate"></asp:CustomValidator>
+          
+            <asp:CustomValidator ID="CustomValidatorDOB" runat="server" ControlToValidate="DOBTextBox" ErrorMessage="Invalid date of birth format. The correct format is DD-MMM-YY." ForeColor="Red" OnServerValidate="CustomValidatorDOB_ServerValidate"></asp:CustomValidator>
 
             <asp:TextBox ID="DOBTextBox" CssClass="form-control" runat="server" Text='<%# Bind("DOB") %>' />
             <br />
             CONTACT:
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="CONTACTTextBox" runat="server" ErrorMessage="Employee Contact Required!" ForeColor="Red"></asp:RequiredFieldValidator>
-            <br />
+          
             <asp:CustomValidator ID="CustomValidator1" ControlToValidate="CONTACTTextBox" runat="server" ErrorMessage="This contact already exists!" ForeColor="Red" OnServerValidate="CustomValidatorContact_ServerValidate"  Text='<%# Eval("CONTACT") %>'></asp:CustomValidator>
             <asp:TextBox ID="CONTACTTextBox" CssClass="form-control" runat="server" Text='<%# Bind("CONTACT") %>' />
             <br />
@@ -53,7 +55,7 @@
         </ItemTemplate>
     </asp:FormView>
 
-    <asp:GridView ID="GridView1" CssClass="table mt-2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="EMPLOYEE_ID" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" CssClass="table mt-2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="EMPLOYEE_ID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             <asp:BoundField DataField="EMPLOYEE_ID" HeaderText="EMPLOYEE_ID" ReadOnly="True" SortExpression="EMPLOYEE_ID" />
@@ -63,7 +65,7 @@
             <asp:BoundField DataField="DEPT_ID" HeaderText="DEPT_ID" SortExpression="DEPT_ID" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringMain %>" DeleteCommand="DELETE FROM &quot;EMPLOYEES&quot; WHERE &quot;EMPLOYEE_ID&quot; = :EMPLOYEE_ID" InsertCommand="INSERT INTO &quot;EMPLOYEES&quot; (&quot;EMPLOYEE_ID&quot;, &quot;EMPLOYEE_NAME&quot;, &quot;DOB&quot;, &quot;CONTACT&quot;, &quot;DEPT_ID&quot;) VALUES (:EMPLOYEE_ID, :EMPLOYEE_NAME, :DOB, :CONTACT, :DEPT_ID)" ProviderName="<%$ ConnectionStrings:ConnectionStringMain.ProviderName %>" SelectCommand="SELECT * FROM &quot;EMPLOYEES&quot;" UpdateCommand="UPDATE &quot;EMPLOYEES&quot; SET &quot;EMPLOYEE_NAME&quot; = :EMPLOYEE_NAME, &quot;DOB&quot; = :DOB, &quot;CONTACT&quot; = :CONTACT, &quot;DEPT_ID&quot; = :DEPT_ID WHERE &quot;EMPLOYEE_ID&quot; = :EMPLOYEE_ID">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"  ConnectionString="<%$ ConnectionStrings:ConnectionStringMain %>" DeleteCommand="DELETE FROM &quot;EMPLOYEES&quot; WHERE &quot;EMPLOYEE_ID&quot; = :EMPLOYEE_ID" InsertCommand="INSERT INTO &quot;EMPLOYEES&quot; (&quot;EMPLOYEE_ID&quot;, &quot;EMPLOYEE_NAME&quot;, &quot;DOB&quot;, &quot;CONTACT&quot;, &quot;DEPT_ID&quot;) VALUES (:EMPLOYEE_ID, :EMPLOYEE_NAME, :DOB, :CONTACT, :DEPT_ID)" ProviderName="<%$ ConnectionStrings:ConnectionStringMain.ProviderName %>" SelectCommand="SELECT * FROM &quot;EMPLOYEES&quot;" UpdateCommand="UPDATE &quot;EMPLOYEES&quot; SET &quot;EMPLOYEE_NAME&quot; = :EMPLOYEE_NAME, &quot;DOB&quot; = :DOB, &quot;CONTACT&quot; = :CONTACT, &quot;DEPT_ID&quot; = :DEPT_ID WHERE &quot;EMPLOYEE_ID&quot; = :EMPLOYEE_ID">
         <DeleteParameters>
             <asp:Parameter Name="EMPLOYEE_ID" Type="Decimal" />
         </DeleteParameters>

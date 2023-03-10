@@ -16,8 +16,9 @@
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="ADDRESS_ID" DataSourceID="SqlDataSource1">
         <InsertItemTemplate>
             ADDRESS_ID:
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Static" ForeColor="Red" runat="server" ControlToValidate="ADDRESS_IDTextBox" ErrorMessage="Address ID Required!" Text='<%# Eval("ADDRESS_ID") %>'></asp:RequiredFieldValidator>
-                <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="ADDRESS_IDTextBox" ErrorMessage="Invalid Address ID format. Pick a Number!" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate" Text='<%# Eval("ADDRESS_ID") %>'></asp:CustomValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Static" ForeColor="Red" runat="server" ControlToValidate="ADDRESS_IDTextBox" ErrorMessage="Address ID Required!" Text='<%# Eval("ADDRESS_ID") %>'></asp:RequiredFieldValidator> 
+          <asp:CustomValidator ID="CustomValidator2" ControlToValidate="ADDRESS_IDTextBox" runat="server" ErrorMessage=" Address ID Already Exists!" ForeColor="Red" OnServerValidate="CustomValidator2_ServerValidate" Text='<%# Eval("ADDRESS_ID") %>'></asp:CustomValidator>
+
             <asp:TextBox ID="ADDRESS_IDTextBox" CssClass="form-control" runat="server" Text='<%# Bind("ADDRESS_ID") %>' />
             <br />
 

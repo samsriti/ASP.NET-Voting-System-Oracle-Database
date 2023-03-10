@@ -53,10 +53,32 @@ namespace Database_CW
             }
         }
 
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string empID = args.Value;
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringMain"].ConnectionString;
 
+            //string connectionString = ConfigurationManager.ConnectionStrings["OracleDBConnection"].ConnectionString;
+            string query = "SELECT COUNT(*) FROM employees WHERE employee_id = :empID";
 
+            using (OracleConnection connection = new OracleConnection(connectionString))
+            {
+                OracleCommand command = new OracleCommand(query, connection);
+                command.Parameters.Add("empID", empID);
+                connection.Open();
+                int count = Convert.ToInt32(command.ExecuteScalar());
 
+                if (count > 0)
+                {
+                    args.IsValid = false;
+                }
+                else
+                {
+                    args.IsValid = true;
+                }
+            }
+        }
 
-
+        
     }
 }

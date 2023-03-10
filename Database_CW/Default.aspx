@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Database_CW._Default" %>
 
-<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -16,6 +16,13 @@
             justify-content: space-between;
             align-items: center
         }
+
+        .view-flex-bottom-2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
 
         .card {
             margin: 20px;
@@ -52,6 +59,11 @@
             .view-details:hover {
                 color: #873e23;
             }
+
+        .center {
+            margin: 0 auto;
+            display: block;
+        }
     </style>
 
     <div class="container">
@@ -87,9 +99,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="view-flex-bottom-1">
-
 
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card">
@@ -100,6 +109,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <hr />
+            <div class="view-flex-bottom-1">
 
 
                 <div class="col-xl-3 col-sm-6 col-12">
@@ -112,17 +124,66 @@
                     </div>
                 </div>
 
+
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card">
-                        <div class="card-header">Employee Highest Vote</div>
+                        <div class="card-header">Voting Record</div>
+                        <div class="card-footer">
+                            <a href="/VotingRecordForm" class="view-details">View Details <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">Employee Job History</div>
                         <div class="card-footer">
                             <a href="/EmpJobHistory" class="view-details">View Details <i class="fa fa-chevron-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-header">Employee of the Month</div>
+                        <div class="card-footer">
+                            <a href="/HighestVote" class="view-details">View Details <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
         </div>
     </div>
+
+
+    <asp:Button ID="btnShowChart" CssClass="center btn btn-info btn-lg active" runat="server" Text="Show Chart" OnClick="btnShowChart_Click" /> <br />
+    <asp:Panel ID="pnlChart" runat="server" Visible="false">
+        <asp:Chart ID="Chart1" runat="server" CssClass="center" DataSourceID="SqlDataSource1" Height="443px" Width="570px">
+             <Titles>
+        <asp:Title Text="Number of Employees working in a department" Font="16pt" />
+    </Titles>
+            <Series>
+                <asp:Series ChartArea="ChartArea1" Name="Series1" XValueMember="DEPT_NAME" YValueMembers="NUM_EMPLOYEES">
+                </asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1">
+                </asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+    </asp:Panel>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringMain %>" ProviderName="<%$ ConnectionStrings:ConnectionStringMain.ProviderName %>" SelectCommand="SELECT d.dept_name, COUNT(e.employee_id) AS num_employees
+FROM employees e
+JOIN departments d ON e.dept_id = d.dept_id
+GROUP BY d.dept_name "></asp:SqlDataSource>
+
+
 
 </asp:Content>

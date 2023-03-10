@@ -17,14 +17,17 @@
         <InsertItemTemplate>
             DEPT_ID:
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="DEPT_IDTextBox" ForeColor="Red" runat="server" ErrorMessage="Department ID Required!" Text='<%# Eval("DEPT_ID") %>'></asp:RequiredFieldValidator>
+           
             <asp:CustomValidator  ID="CustomValidator1" runat="server" ControlToValidate="DEPT_IDTextBox" ForeColor="Red"
                 ErrorMessage="Department ID already exists!" OnServerValidate="CustomValidator1_ServerValidate"
                 Text='<%# Eval("DEPT_ID") %>'></asp:CustomValidator>
 
             &nbsp;<asp:TextBox ID="DEPT_IDTextBox" CssClass="form-control" runat="server" Text='<%# Bind("DEPT_ID") %>' />
-            <br />
+          <br />
             DEPT_NAME:<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="DEPT_NAMETextBox" ForeColor="Red" runat="server" ErrorMessage="Department Name Required!" Text='<%# Eval("DEPT_NAME") %>'></asp:RequiredFieldValidator>
-            &nbsp;<asp:TextBox ID="DEPT_NAMETextBox" CssClass="form-control" runat="server" Text='<%# Bind("DEPT_NAME") %>' />
+       
+            &nbsp;<asp:CustomValidator ID="CustomValidator2" ControlToValidate="DEPT_NAMETextBox" runat="server" ErrorMessage="Invalid Department Name" ForeColor="Red" OnServerValidate="CustomValidator2_ServerValidate" Text='<%# Eval("DEPT_NAME") %>'></asp:CustomValidator>
+            <asp:TextBox ID="DEPT_NAMETextBox" CssClass="form-control" runat="server" Text='<%# Bind("DEPT_NAME") %>' />
             <br />
             <asp:LinkButton ID="InsertButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CssClass="btn btn-primary btn-lg active" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
