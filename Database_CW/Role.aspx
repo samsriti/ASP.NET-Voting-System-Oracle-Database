@@ -1,9 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Role.aspx.cs" Inherits="Database_CW.Role" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-        <div>
-        </div>
-        <h1 style="text-align:center"> Role Details </h1>
+       
+       <h1 style="text-align: left">Role Form </h1>
+     <h4 style="text-align: left; font-style:italic"> Create role details </h4>
         
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="ROLE_ID" DataSourceID="SqlDataSource1">
            
@@ -28,8 +28,9 @@
                 &nbsp;<asp:LinkButton ID="NewButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="False" CommandName="New" Text="Add Role" />
             </ItemTemplate>
         </asp:FormView>
-    <br />
     
+      <br />
+     <h4 style="text-align: left; font-style:italic"> Update, view and delete role details </h4>
         <asp:GridView ID="GridView1" CssClass="table mt-2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ROLE_ID" DataSourceID="SqlDataSource1" >
             <Columns>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True"  />

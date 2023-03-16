@@ -47,7 +47,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a style="color: black;" class="navbar-brand" runat="server" href="~/">Employee Voting System </a>
+                    <a style="color: black;" class=" navbar-brand" runat="server" href="~/">  Employee Voting System </a>
                 </div>
 
                 <div class="navbar-collapse collapse">
@@ -55,11 +55,14 @@
                         <li></li>
                         <li></li>
                         <li></li>
-                        <li><a style="color: black;" runat="server" href="~/Employee">Employee  </a></li>
-                        <li><a style="color: black;" runat="server" href="~/Department">Department  </a></li>
-                        <li><a style="color: black;" runat="server" href="~/JobHistory">Job </a></li>
-                        <li><a style="color: black;" runat="server" href="~/Role">Role </a></li>
-                        <li><a style="color: black;" runat="server" href="~/Address">Address </a></li>
+                        <li><a style="color: black;" runat="server" href="~/Employee">Employee | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/Department">Department | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/JobHistory">Job | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/Role">Role | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/Address">Address | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/VotingRecordForm">Voting Record | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/EmpJobHistory">Job History | </a></li>
+                        <li><a style="color: black;" runat="server" href="~/HighestVote">Employee of the Month | </a></li>
                     </ul>
                 </div>
 

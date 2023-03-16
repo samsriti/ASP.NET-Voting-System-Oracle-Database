@@ -12,7 +12,8 @@
         }
     </style>
 
-    <h1 style="text-align: center">Department Details </h1>
+   <h1 style="text-align: left">Department Form </h1>
+     <h4 style="text-align: left; font-style:italic"> Create department details </h4>
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="DEPT_ID" DataSourceID="SqlDataSource1">
         <InsertItemTemplate>
             DEPT_ID:
@@ -36,6 +37,8 @@
             &nbsp;<asp:LinkButton ID="NewButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="False" CommandName="New" Text="Add Department" />
         </ItemTemplate>
     </asp:FormView>
+    <br />
+     <h4 style="text-align: left; font-style:italic"> Update, view and delete department details </h4>
     <asp:GridView ID="GridView1" CssClass="table" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="DEPT_ID" DataSourceID="SqlDataSource1">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />

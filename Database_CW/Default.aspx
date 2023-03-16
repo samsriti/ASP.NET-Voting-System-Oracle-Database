@@ -65,7 +65,7 @@
             display: block;
         }
     </style>
-
+     
     <div class="container">
         <div class="row">
             <div class="view-flex-top">
@@ -161,7 +161,7 @@
 
         </div>
     </div>
-
+    <br />
 
     <asp:Button ID="btnShowChart" CssClass="center btn btn-info btn-lg active" runat="server" Text="Show Chart" OnClick="btnShowChart_Click" /> <br />
     <asp:Panel ID="pnlChart" runat="server" Visible="false">

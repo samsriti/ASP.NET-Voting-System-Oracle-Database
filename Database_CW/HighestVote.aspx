@@ -2,12 +2,16 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
      <h1 style="text-align: center">Employee of the Month</h1>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringMain %>" ProviderName="<%$ ConnectionStrings:ConnectionStringMain.ProviderName %>" SelectCommand="SELECT e.employee_id, e.employee_name, v.voting_year, v.voting_month, COUNT(v.candidate_id) AS vote_count
-FROM employees e
-JOIN voting_info v ON e.employee_id = v.candidate_id
-WHERE v.voting_month = :month
-GROUP BY e.employee_id, e.employee_name, v.voting_year, v.voting_month
-ORDER BY vote_count DESC">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringMain %>" ProviderName="<%$ ConnectionStrings:ConnectionStringMain.ProviderName %>" SelectCommand="SELECT *
+FROM (
+  SELECT e.employee_id, e.employee_name, v.voting_year, v.voting_month, COUNT(v.candidate_id) AS vote_count
+  FROM employees e
+  JOIN voting_info v ON e.employee_id = v.candidate_id
+  WHERE v.voting_month = :month
+  GROUP BY e.employee_id, e.employee_name, v.voting_year, v.voting_month
+  ORDER BY vote_count DESC
+)
+WHERE ROWNUM &lt;= 3">
             <SelectParameters>
                 <asp:ControlParameter ControlID="DropDownList1" Name="month" PropertyName="SelectedValue" />
             </SelectParameters>

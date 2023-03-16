@@ -12,7 +12,8 @@
             margin: 3px;
         }
     </style>
-    <h1 style="text-align: center">Job History Details </h1>
+     <h1 style="text-align: left">Job Form </h1>
+     <h4 style="text-align: left; font-style:italic"> Create job details </h4>
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="JOB_ID" DataSourceID="SqlDataSource1">
 
         <InsertItemTemplate>
@@ -51,6 +52,8 @@
             &nbsp;<asp:LinkButton ID="NewButton" CssClass="btn btn-primary btn-lg active" runat="server" CausesValidation="False" CommandName="New" Text="Add Job Record" />
         </ItemTemplate>
     </asp:FormView>
+      <br />
+     <h4 style="text-align: left; font-style:italic"> Update, view and delete job details </h4>
     <asp:GridView ID="GridView1" CssClass="table mt-2" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="JOB_ID" DataSourceID="SqlDataSource1">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
